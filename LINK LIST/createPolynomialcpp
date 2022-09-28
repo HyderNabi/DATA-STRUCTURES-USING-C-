@@ -1,0 +1,83 @@
+#include<iostream>
+#include<conio>
+class poly
+{
+	struct polynode
+   {
+   	float coeff;
+      int exp;
+      struct polynode *next;
+   }*start, *last;
+public:
+	poly()
+   {
+   	start = NULL;
+   }
+   void createPoly(float c, int e);
+   void display();
+};
+void poly::createPoly(float c, int e)
+{
+	polynode *temp = new polynode();
+   temp ->coeff = c;
+   temp ->exp = e;
+   temp->next = NULL;
+
+   if(start == NULL)
+   {
+      start = temp;
+      last = start;
+   }
+   else
+   {
+   	last -> next = temp;
+      last = last->next;
+
+   }
+
+
+}
+void poly::display()
+{
+   polynode *temp = start;
+   int f = 0;
+   cout<<endl;
+   while(temp!=NULL)
+   {
+   	if(f != 0)
+      {
+      	if(temp->coeff >0)
+         {
+         	cout<<"+";
+         }
+         else
+         {
+         	cout<<" ";
+         }
+      }
+      if(temp ->exp !=0)
+      {
+      	cout<<temp->coeff<<"X^"<<temp->exp;
+      }
+      else
+      {
+      	cout<<temp->coeff;
+
+      }
+      temp = temp->next;
+         f = 1;
+   }
+}
+int main()
+{
+	poly p1;
+   p1.createPoly(1.4,5);
+   p1.createPoly(1.5,4);
+  	p1.createPoly(1.7,2);
+   p1.createPoly(1.8,1);
+   p1.display();
+
+
+      getche();
+      return 0;
+}
